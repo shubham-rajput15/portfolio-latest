@@ -8279,6 +8279,14 @@ h1, h2, h3, h4, h5,
     color: rgba(0, 0, 0, 0.3);
     text-transform: uppercase;
     font-weight: 500; }
+.thumbnail li.active {
+    border: 2px solid #ff0000; /* Highlight active thumbnail */
+    opacity: 1;
+}
+.thumbnail li {
+    opacity: 0.6; /* Add a slight opacity to non-active thumbnails */
+    cursor: pointer;
+}
 
 .thumbnail {
   list-style: none;
