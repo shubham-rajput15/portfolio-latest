@@ -342,7 +342,7 @@
 							</div>
 
 							<div class="my-5 text-center">
-			          <ul class="thumbnail">
+			          <ul class="thumbnail-carousel owl-carousel">
 			            <li class="active img"><a href="#"><img src="image/paras-1.jpg" alt="Image" class="img-fluid"></a></li>
 			            <li><a href="#"><img src="image/paras-2.jpg" alt="Image" class="img-fluid"></a></li>
 			            <li><a href="#"><img src="image/paras-3.jpg" alt="Image" class="img-fluid"></a></li>
@@ -375,24 +375,26 @@
           autoplayHoverPause: true
         });
 
-        // Sync the main slider with the thumbnails
-        var thumbnails = $('.thumbnail li');
-        
-        // Change active class when thumbnail is clicked
-        thumbnails.click(function () {
-          var index = $(this).index();
-          owl.trigger('to.owl.carousel', [index]);
+        // Initialize the thumbnail slider (display 3 items at a time)
+        var thumbnailOwl = $('.thumbnail-carousel').owlCarousel({
+          items: 3, 
+          loop: true,
+          margin: 10,
+          nav: false, // Disable navigation for thumbnail slider
+          autoplay: true,
+          autoplayTimeout: 4000,
+          autoplayHoverPause: true
         });
 
-        // Sync the thumbnails with the main slider
+        // Sync the thumbnail carousel with the main carousel
         owl.on('changed.owl.carousel', function(event) {
           var currentIndex = event.item.index;
-          thumbnails.removeClass('active');
-          thumbnails.eq(currentIndex).addClass('active');
+          var currentPosition = Math.floor(currentIndex / 3); // Calculate the sequence of 3 images
+          thumbnailOwl.trigger('to.owl.carousel', [currentPosition]);
         });
 
         // Set the first thumbnail as active on page load
-        thumbnails.first().addClass('active');
+        thumbnailOwl.trigger('to.owl.carousel', [0]);
       });
     </script>
 
