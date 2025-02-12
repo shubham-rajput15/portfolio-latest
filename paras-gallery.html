@@ -362,6 +362,40 @@
 			</div>
 		</section>
 
+	   <!-- Custom jQuery -->
+    <script>
+      $(document).ready(function () {
+        // Initialize the main slider
+        var owl = $('.featured-carousel').owlCarousel({
+          items: 1,
+          loop: true,
+          nav: true,
+          autoplay: true,
+          autoplayTimeout: 4000,
+          autoplayHoverPause: true
+        });
+
+        // Sync the main slider with the thumbnails
+        var thumbnails = $('.thumbnail li');
+        
+        // Change active class when thumbnail is clicked
+        thumbnails.click(function () {
+          var index = $(this).index();
+          owl.trigger('to.owl.carousel', [index]);
+        });
+
+        // Sync the thumbnails with the main slider
+        owl.on('changed.owl.carousel', function(event) {
+          var currentIndex = event.item.index;
+          thumbnails.removeClass('active');
+          thumbnails.eq(currentIndex).addClass('active');
+        });
+
+        // Set the first thumbnail as active on page load
+        thumbnails.first().addClass('active');
+      });
+    </script>
+
     <script src="./js-circle/jquery.min.js"></script>
     <script src="./js-circle/popper.js"></script>
     <script src="./js-circle/bootstrap.min.js"></script>
