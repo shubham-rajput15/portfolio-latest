@@ -37,7 +37,6 @@
 	      }
 	    }
 		});
-		// Limit dots to 3
 		$('.owl-dots').css('display', 'flex');
 		$('.owl-dot').slice(3).hide();
 
