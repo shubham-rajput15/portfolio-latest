@@ -37,9 +37,14 @@
 	      }
 	    }
 		});
-		$('.owl-dots').css('display', 'flex');
-		$('.owl-dot').slice(3).hide();
+		// Make sure the dots are fully loaded before trying to hide any
+        owl.on('initialized.owl.carousel', function() {
+            // Hide all dots after the first 3
+            $('.owl-dot').slice(3).hide();
+        });
 
+        // Make sure the dots container is displayed in flex
+        $('.owl-dots').css('display', 'flex');
 	};
 	carousel();
 
