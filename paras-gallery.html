@@ -341,7 +341,7 @@
 								</div>
 							</div>
 
-<!-- 							<div class="my-5 text-center">
+				 <div class="my-5 text-center">
 			          <ul class="thumbnail">
 			            <li class="active img"><a href="#"><img src="image/paras-1.jpg" alt="Image" class="img-fluid"></a></li>
 			            <li><a href="#"><img src="image/paras-2.jpg" alt="Image" class="img-fluid"></a></li>
@@ -353,64 +353,16 @@
 				    <li><a href="#"><img src="image/paras-8.jpg" alt="Image" class="img-fluid"></a></li>
 				    <li><a href="#"><img src="image/paras-9.jpg" alt="Image" class="img-fluid"></a></li>
 				    <li><a href="#"><img src="image/paras-10.jpg" alt="Image" class="img-fluid"></a></li>
-
 			          </ul>
-			        </div> -->
+			        </div>
 
-							  <div class="my-5 text-center">
-                <div class="thumbnail-carousel owl-carousel">
-                  <div class="item"><a href="#"><img src="image/paras-1.jpg" alt="Image" class="img-fluid"></a></div>
-                  <div class="item"><a href="#"><img src="image/paras-2.jpg" alt="Image" class="img-fluid"></a></div>
-                  <div class="item"><a href="#"><img src="image/paras-3.jpg" alt="Image" class="img-fluid"></a></div>
-                  <div class="item"><a href="#"><img src="image/paras-4.jpg" alt="Image" class="img-fluid"></a></div>
-                  <div class="item"><a href="#"><img src="image/paras-5.jpg" alt="Image" class="img-fluid"></a></div>
-                  <!-- Add more thumbnails if needed -->
-                </div>
-              </div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
 
-	   <!-- Custom jQuery -->
-    <script>
-     $(document).ready(function () {
-  // Initialize the main slider
-  var owl = $('.featured-carousel').owlCarousel({
-    items: 1,
-    loop: true,
-    nav: true,
-    autoplay: true,
-    autoplayTimeout: 4000,
-    autoplayHoverPause: true
-  });
-
-  // Initialize the thumbnail slider (display 3 items at a time)
-  var thumbnailOwl = $('.thumbnail-carousel').owlCarousel({
-    items: 3, 
-    loop: true,
-    margin: 10,
-    nav: false, // Disable navigation for thumbnail slider
-    autoplay: true,
-    autoplayTimeout: 4000,
-    autoplayHoverPause: true
-  });
-
-  // Sync the thumbnail carousel with the main carousel
-  owl.on('changed.owl.carousel', function(event) {
-    console.log("Main carousel changed!");
-    var currentIndex = event.item.index;
-    var currentPosition = Math.floor(currentIndex / 3); // Calculate the sequence of 3 images
-    thumbnailOwl.trigger('to.owl.carousel', [currentPosition]);
-  });
-
-  // Set the first thumbnail as active on page load
-  thumbnailOwl.trigger('to.owl.carousel', [0]);
-});
-
-    </script>
-
+	 
     <script src="./js-circle/jquery.min.js"></script>
     <script src="./js-circle/popper.js"></script>
     <script src="./js-circle/bootstrap.min.js"></script>
