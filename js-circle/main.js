@@ -72,7 +72,7 @@
   });
 
   // Thumbnail carousel (bottom)
-  var thumbOwl = $('.thumbnail-carousel');
+  var thumbOwl = $('.thumbnail');
   thumbOwl.owlCarousel({
     items: 3,
     loop: false,
