@@ -194,12 +194,27 @@
          ];
          
          const mainImage = document.getElementById('sliderImage');
+         const mainVideo = document.getElementById('sliderVideo'); 
          const thumbnailsContainer = document.getElementById('thumbnails');
          let currentIndex = 0;
          
          function showImage(index) {
            currentIndex = index;
-           mainImage.src = imageUrls[currentIndex];
+           const url = imageUrls[currentIndex];
+           const isVideo = url.endsWith('.mp4');
+            if (isVideo) {
+    mainImage.style.display = 'none';
+    mainVideo.style.display = 'block';
+    mainVideo.src = url;
+    mainVideo.load();
+    mainVideo.play();
+  } else {
+    mainVideo.pause();
+    mainVideo.style.display = 'none';
+    mainImage.style.display = 'block';
+    mainImage.src = url;
+  }
+
          }
          
          function nextImage() {
