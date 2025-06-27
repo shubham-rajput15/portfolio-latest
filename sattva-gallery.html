@@ -129,7 +129,6 @@
          <div class="slider-container">
             <div class="main-image" id="mainImage">
                <button class="nav-btn prev-btn" onclick="prevImage()">❮</button>
-               <!--                <img id="sliderImage" src="" alt="Main Image"> -->
                <img id="sliderImage" style="display:none;" />
                <video id="sliderVideo" style="display:none;" controls muted></video>
                <button class="nav-btn next-btn" onclick="nextImage()">❯</button>
@@ -221,17 +220,24 @@
          }
          
          function nextImage() {
-           // Only auto-next if current is not video
-           if (!imageUrls[currentIndex].endsWith('.mp4')) {
-             currentIndex = (currentIndex + 1) % imageUrls.length;
-             showImage(currentIndex);
-           }
+           currentIndex = (currentIndex + 1) % imageUrls.length;
+           showImage(currentIndex);
          }
          
          function prevImage() {
            currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
            showImage(currentIndex);
          }
+         
+         // Auto slide every 3 seconds
+         setInterval(() => {
+           nextImage();
+         }, 3000);
+         
+         // Auto go to next after video ends
+         mainVideo.addEventListener('ended', () => {
+           nextImage();
+         });
          
          // Generate thumbnails
          imageUrls.forEach((url, index) => {
@@ -252,11 +258,6 @@
          
            thumbnailsContainer.appendChild(thumb);
          });
-         
-         // Auto slide every 3s
-         setInterval(() => {
-           nextImage();
-         }, 3000);
          
          // Initial load
          showImage(0);
