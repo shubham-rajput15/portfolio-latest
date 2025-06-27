@@ -13,13 +13,16 @@
       <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
    </head>
-   <style>	  
+   <style>	 
+      .global{
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+     }
       .slider-container {
       width: 90%;
       max-width: 900px;
       position: relative;
-      display: flex;
-      justify-content: center;
       }
       .main-image {
       position: relative;
@@ -114,10 +117,10 @@
             </div>
          </nav>
       </header>
-      <section class="about section" >
+      <section class="about section">
          <h2 class="section__title">Sattva Global City</h2>
       </section>
-      <section class="about section" id="about">
+      <section class="about section" global>
          <div class="slider-container">
             <div class="main-image" id="mainImage">
                <button class="nav-btn prev-btn" onclick="prevImage()">❮</button>
