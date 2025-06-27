@@ -172,76 +172,92 @@
       <script src="./js/swiper-bundle.min.js"></script>
       <!--==================== MAIN JS ====================-->
       <script src="./js/main.js"></script>
-      <script>
-         const imageUrls = [
-           "image/sattva/video.mp4",
-           "image/sattva/1.jpeg",
-           "image/sattva/2.jpeg",
-           "image/sattva/3.jpeg",
-           "image/sattva/4.jpeg",
-           "image/sattva/5.jpeg",
-           "image/sattva/6.jpeg",
-           "image/sattva/7.jpeg",
-           "image/sattva/8.jpeg",
-           "image/sattva/9.jpeg",
-           "image/sattva/10.jpeg",
-           "image/sattva/11.jpeg",
-           "image/sattva/12.jpeg",
-           "image/sattva/13.jpeg",
-           "image/sattva/14.jpeg",
-           "image/sattva/15.jpeg",
-           "image/sattva/16.jpeg"
-         ];
-         
-         const mainImage = document.getElementById('sliderImage');
-         const mainVideo = document.getElementById('sliderVideo'); 
-         const thumbnailsContainer = document.getElementById('thumbnails');
-         let currentIndex = 0;
-         
-         function showImage(index) {
-           currentIndex = index;
-           const url = imageUrls[currentIndex];
-           const isVideo = url.endsWith('.mp4');
-            if (isVideo) {
-    mainImage.style.display = 'none';
-    mainVideo.style.display = 'block';
-    mainVideo.src = url;
-    mainVideo.load();
-    mainVideo.play();
-  } else {
-    mainVideo.pause();
-    mainVideo.style.display = 'none';
-    mainImage.style.display = 'block';
-    mainImage.src = url;
+  
+<script>
+  const imageUrls = [
+    "image/sattva/video.mp4",
+    "image/sattva/1.jpeg",
+    "image/sattva/2.jpeg",
+    "image/sattva/3.jpeg",
+    "image/sattva/4.jpeg",
+    "image/sattva/5.jpeg",
+    "image/sattva/6.jpeg",
+    "image/sattva/7.jpeg",
+    "image/sattva/8.jpeg",
+    "image/sattva/9.jpeg",
+    "image/sattva/10.jpeg",
+    "image/sattva/11.jpeg",
+    "image/sattva/12.jpeg",
+    "image/sattva/13.jpeg",
+    "image/sattva/14.jpeg",
+    "image/sattva/15.jpeg",
+    "image/sattva/16.jpeg"
+  ];
+
+  const mainImage = document.getElementById('sliderImage');
+  const mainVideo = document.getElementById('sliderVideo');
+  const thumbnailsContainer = document.getElementById('thumbnails');
+  let currentIndex = 0;
+
+  function showImage(index) {
+    currentIndex = index;
+    const url = imageUrls[index];
+    const isVideo = url.endsWith('.mp4');
+
+    if (isVideo) {
+      mainImage.style.display = 'none';
+      mainVideo.style.display = 'block';
+      mainVideo.src = url;
+      mainVideo.load();
+      mainVideo.play();
+    } else {
+      mainVideo.pause();
+      mainVideo.style.display = 'none';
+      mainImage.style.display = 'block';
+      mainImage.src = url;
+    }
   }
 
-         }
-         
-         function nextImage() {
-           currentIndex = (currentIndex + 1) % imageUrls.length;
-           showImage(currentIndex);
-         }
-         
-         function prevImage() {
-           currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
-           showImage(currentIndex);
-         }
-         
-         // Initialize thumbnails
-         imageUrls.forEach((url, index) => {
-           const thumb = document.createElement('img');
-           thumb.src = url;
-           thumb.onclick = () => showImage(index);
-           thumbnailsContainer.appendChild(thumb);
-         });
-         
-         // Auto slide every 3 seconds
-         setInterval(() => {
-           nextImage();
-         }, 3000);
-         
-         // Initial image
-         showImage(0);
-      </script>
+  function nextImage() {
+    // Only auto-next if current is not video
+    if (!imageUrls[currentIndex].endsWith('.mp4')) {
+      currentIndex = (currentIndex + 1) % imageUrls.length;
+      showImage(currentIndex);
+    }
+  }
+
+  function prevImage() {
+    currentIndex = (currentIndex - 1 + imageUrls.length) % imageUrls.length;
+    showImage(currentIndex);
+  }
+
+  // Generate thumbnails
+  imageUrls.forEach((url, index) => {
+    const isVideo = url.endsWith('.mp4');
+    const thumb = document.createElement(isVideo ? 'video' : 'img');
+    thumb.src = url;
+    thumb.style.height = '80px';
+    thumb.style.borderRadius = '6px';
+    thumb.style.cursor = 'pointer';
+    thumb.onclick = () => showImage(index);
+
+    if (isVideo) {
+      thumb.muted = true;
+      thumb.autoplay = true;
+      thumb.loop = true;
+      thumb.playsInline = true;
+    }
+
+    thumbnailsContainer.appendChild(thumb);
+  });
+
+  // Auto slide every 3s
+  setInterval(() => {
+    nextImage();
+  }, 3000);
+
+  // Initial load
+  showImage(0);
+</script>
    </body>
 </html>
